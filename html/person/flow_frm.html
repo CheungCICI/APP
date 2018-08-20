@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta http-equiv="pragma" content="private">
+    <link rel="stylesheet" type="text/css" href="../../css/person/flow_frm.css">
+    <title>资金流水</title>
+</head>
+
+<body>
+  <!-- <div class="box"> -->
+        <div class="top">
+            <p p2 onclick="api.closeFrame()"><img class="back_img" src="../../image/back.png"></p>
+            <p class="p1"><span>资金流水</span></p>
+        </div>
+<!-- <div class="aaa"> -->
+        <div class="feet" id="feet">
+            <script type="text/html" id="feethtml">
+
+                {{each list as v}}
+                <div class="xxx">o
+                    <div class="ku">
+                        <div class="ppp"></div> //蓝色背景样式
+                        <div class="pp">
+                            {{if v.capital_type==1}}
+                            <p class="spp">入金</p>
+                            {{/if}} {{if v.capital_type==2}}
+                            <p class="spp">出金</p>
+                            {{/if}} {{if v.capital_type==3}}
+                            <p class="spp">下单</p>
+                            {{/if}} {{if v.capital_type==4}}
+                            <p class="spp">结算</p>
+                            {{/if}} {{if v.capital_type==5}}
+                            <p class="spp">出金退回</p>
+                            {{/if}} {{if v.capital_type==6}}
+                            <p class="spp">提成</p>
+                            {{/if}}
+                            <p p0>
+                                <image class="img" src="../../icon/icon_1.png">
+                                    <span>{{v.surplus}}</span>
+                            </p>
+                            <p p0>
+                                <image class="img" src="../../icon/icon_2.png">
+                                    <span>{{v.intime}}</span>
+                            </p>
+                        </div>
+                        <p pp3>{{v.amount}}</p>
+                        <div class="bt" onclick="ff()" pp4>∧</div>
+                    </div>
+                    {{if v.capital_type==1}}
+                    <div class="xz">详情：入金</div>ooii
+                    {{/if}} {{if v.capital_type==2}}
+                    <div class="xz">详情：出金</div>
+                    {{/if}} {{if v.capital_type==3}}
+                    <div class="xz">详情：下单成功</div>
+                    {{/if}} {{if v.capital_type==4}}
+                    <div class="xz">详情：订单到期获利结算</div>
+                    {{/if}} {{if v.capital_type==5}}
+                    <div class="xz">详情：出金退回</div>
+                    {{/if}} {{if v.capital_type==6}}
+                    <div class="xz">详情：提成</div>
+                    {{/if}}
+
+                </div>
+                {{/each}}
+            </script>
+        </div>
+     <!-- </div> -->
+    <!-- <div class="down">关闭</div> -->
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/person/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../script/public/public.js">//公共入口</script>
+    <script type="text/javascript" src="../../script/public/template.js">//模板文件</script>
+    <script type="text/javascript" src="../../script/layui/layui.js">//下拉刷新</script>
+    <script type="text/javascript" type="text/javascript">
+        apiready = function() {
+          //下拉加载刷新
+          jiazai();
+          api.setRefreshHeaderInfo({
+              visible: true,
+              loadingImg:'',
+              bgColor: '#f5f5f5',
+              textColor: '#ccc',
+              textDown: '下拉加载更多',
+              textUp:'松开加载',
+              textLoading:'加载中...',
+              showTime: false
+          }, function(ret, err) {
+           jiazai();
+             setTimeout(function(){
+               api.refreshHeaderLoadDone();
+             },500)
+          });
+        }
+
+        function jiazai(){
+          //数据来源script/order/order.js
+          layui.use('flow', function() {
+              var $ = layui.jquery; //不用额外加载jQuery，flow模块本身是有依赖jQuery的，直接用即可。
+              var flow = layui.flow;
+              flow.load({
+                  elem: '#feet' //指定列表容器
+                      ,
+                  done: function(page, next) { //到达临界点（默认滚动触发），触发下一页
+                      requestPost('Personal/CapitalFlow', { //指向的方法接口
+                          'page': page
+                      }, function(result, data) {
+                          var list = template('feethtml', {
+                              'list': data.history
+                          });
+                          next(document.getElementById('feet').insertAfter = list, page < data.count);
+
+                      });
+                  }
+              });
+          });
+        }
+
+
+
+        function ff() {
+
+            $(".xxx").on('click', '.bt', function() {
+                if ($(this).parent().parent().find(".xz").css("display") == "none") {
+                    $(this).parent().parent().find(".xz").show();
+                    $(this).text("∨");
+                } else {
+                    $(this).parent().parent().find(".xz").hide();
+                    $(this).text("∧");
+                }
+            });
+
+        }
+    </script>
+</body>
+
+</html>

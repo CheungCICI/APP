@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta http-equiv="pragma" content="private">
+    <link rel="stylesheet" type="text/css" href="../../css/public/ydui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/person/yh.css" />
+
+    <head>
+
+        <body>
+
+          <div class="yh-nav">
+              <!-- <a href="#" onclick="api.closeFrame()">
+                  <</a> -->
+          <p p2 onclick="api.closeFrame()"><img class="back_img" src="../../image/back.png"><span>用户入金</span></p>
+          </div>
+
+            <div class="yh-container">
+
+                <div class="yh-item">
+                    <img src="../../image/bcard.png"> <span>微信</span>
+                    <label class="checkBox"><input type="radio" name="checks"></label>
+                </div>
+
+                <div class="yh-item">
+                    <img src="../../image/bcard.png"> <span>QQ</span>
+                    <label class="checkBox"><input type="radio"  name="checks"></label>
+                </div>
+
+                <div class="yh-item">
+                    <img src="../../image/bcard.png"> <span>客服号:13488860643 ,备注充值</span>
+                    <label class="checkBox"><input type="radio"  name="checks"></label>
+                </div>
+
+                <div class="yh-cz">
+                    <img src="../../image/cmoney.png"><span>充值金额:</span>
+                    <select>
+           <option>100</option>
+           <option>200</option>
+           <option>500</option>
+         </select>
+                </div>
+                <!-- <p class="pp">额:</P> -->
+                <p class="yue">余额:<span>123</span></p>
+
+                <input type="submit" value="确认充值" class="yh-sb">
+
+
+
+            </div>
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript" src="../../script/person/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="../../script/public/public.js">//公共入口</script>
+  <script type="text/javascript" src="../../script/public/template.js">//模板文件</script>
+  <script type="text/javascript" type="text/javascript">
+            apiready = function() {
+                // var money = "";
+                requestPost('Personal/MyMessage', { //指向的方法接口
+                }, function(result, data) {
+                    if (result) {
+                        // console.log(data);
+                        // money = data.money;
+                        $(".yue").text("余额:" + data.money);
+                    }
+                });
+            }
+      </script>
+    </body>
+</html>

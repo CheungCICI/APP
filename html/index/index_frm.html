@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta http-equiv="pragma" content="private">
+    <link rel="stylesheet" type="text/css" href="../../css/public/ydui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index/index_frm.css"/>
+</head>
+
+<body id='body'>
+
+    <header class="m-navbar navbar-fixed" id="header">
+        <div class="navbar-center">
+            <span class="navbar-title">商品详情</span>
+        </div>
+    </header>
+    <div class="m-tab" data-ydui-tab>
+        <div class="container">
+          <ul class="tab-nav">
+              <li class="tab-nav-item"><a href="javascript:;">按需</a></li>
+              <li class="tab-nav-item" id="kong"><a href="javascript:;">多空</a></li>
+          </ul>
+        </div>
+
+        <div class="tab-panel">
+            <div class="tab-panel-item tab-active">
+                <ul class="title_t">
+                  <li>
+                    <span>商品名称</span>
+                  </li>
+                  <li>
+                    <span>现价</span>
+                  </li>
+                  <li>
+                    <span>最低</span>
+                  </li>
+                  <li>
+                    <span>最高</span>
+                  </li>
+                </ul>
+                <div id="goods_list"></div>
+                <script id='info' type="text/html">
+                    {{each list as v}}
+                    <ul onclick="goodsdataile({{v.goods_id}})">
+                      <li >
+                        <span>{{v.goods_name}}</span>
+                      </li>
+                      <li class="price{{v.goods_id}}" style="background-color:red";"color:#fff";"border-radius:5px">
+                        <span>{{v.real_price}}</span>
+                      </li>
+                      <li class="low{{v.goods_id}}" style="color:red">
+                        <span>{{v.floor_price}}</span>
+                      </li>
+                      <li class="top{{v.goods_id}}" style="color:red">
+                        <span>{{v.top_price}}</span>
+                      </li>
+                    </ul>
+                    {{/each}}
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/public/jquery.min.js"></script>
+<script type="text/javascript" src="../../script/public/ydui.js"></script>
+<script type="text/javascript" src="../../script/public/ydui.flexible.js"></script>
+<script type="text/javascript" src="../../script/public/template.js"></script>
+<script type="text/javascript" src="../../script/public/public.js"></script>
+<script type="text/javascript" src="../../script/index/index.js"></script>
+</html>

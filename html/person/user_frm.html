@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文档</title>
+    <link rel="stylesheet" href="../../css/person/user.css">
+</head>
+
+<body>
+    <header class="m-navbar navbar-fixed" id="header">
+        <div class="navbar-center">
+            <span class="navbar-title">个人中心</span>
+        </div>
+    </header>
+    <div class="top">
+        <img class="power" src="../../image/power.png" />
+        <article>
+            <img class="head" src="../../image/head.png" />
+        </article>
+        <p class="username">
+            <img src="../../image/bi.png" onclick="openfrm(' updateinformation')">
+        </p>
+        <p class="money"></p>
+    </div>
+    <ul class="mid">
+        <li onclick="openfrm('bank_frm','','')">
+            <div>
+                <img  src="../../image/card.png" />
+                <span>签约</span>
+            </div>
+        </li>
+        <li onclick="openfrm('user_charge_frm')">
+            <div>
+                <img  src="../../image/in.png" />
+                <span>充值</span>
+            </div>
+        </li>
+        <li onclick="openfrm('withdraw_frm')">
+            <div>
+                <img  src="../../image/out.png" />
+                <span>提现</span>
+            </div>
+        </li>
+        <li onclick="openfrm('flow_frm')">
+            <div>
+                <img  src="../../image/note.png" />
+                <span>资金流水</span>
+            </div>
+        </li>
+    </ul>
+    <div class="user_btn">
+        <a href="#" onclick="openfrm('withdrawlist_frm')">
+            <div>
+                <img  src="../../image/out.png" />
+                <div>提现记录</div>
+                <span>></span>
+            </div>
+        </a>
+    </div>
+    <div class="user_btn">
+        <a href="#" onclick="openfrm('chargelist_frm')">
+            <div>
+                <img  src="../../image/in.png" />
+                <div>充值记录</div>
+                <span>></span>
+            </div>
+        </a>
+    </div>
+    <div class="user_btn">
+        <a href="#" onclick="openWin('../order/order_win')">
+            <div>
+                <img  src="../../image/time.png" />
+                <div>历史订单</div>
+                <span>></span>
+            </div>
+        </a>
+    </div>
+    <div class="user_btn">
+        <a href="#" onclick="openfrm(' updateinformation')">
+            <div>
+                <img  src="../../image/bi.png" />
+                <div>修改信息</div>
+                <span>></span>
+            </div>
+        </a>
+    </div>
+    <div class="user_btn bt_bank">
+        <a href="">
+            <div>
+                <img  src="../../image/power.png" />
+                <div>退出</div>
+                <span>></span>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script src="../../script/public/jquery.min.js"></script>
+    <script type="text/javascript" src="../../script/public/public.js"></script>
+    <script type="text/javascript" src="../../script/person/user.js"></script>
+</body>
+
+</html>

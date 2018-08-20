@@ -1,0 +1,161 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+}
+.top {
+    margin: 0;
+    position: fixed;
+    top:0;
+    z-index: 9999;
+    /*border:1px solid red;*/
+    width: 100%;
+    height: 80px;
+    background: black;
+}
+
+[p2] {
+    float: left;
+    margin: 1.5rem;
+    color: white;
+    /*border: 1px solid red;*/
+}
+.back_img{
+  width: 1.5rem;
+}
+/*[p2]>span {
+    line-height: 15rem;
+
+}*/
+
+.p1 {
+    margin: 0;
+    color: white;
+    font-size: 1.2rem;
+    margin-left: 10rem;
+    /*text-align: center;*/
+}
+
+.p1>span {
+    line-height: 5rem;
+}
+
+[p2]>span {
+    font-size: 30px;
+    line-height: 3rem;
+    padding-left: 10px;
+}
+
+
+
+.feet {
+    /*border: 1px solid red;*/
+    margin-top: 80px;
+    /*position: absolute;*/
+    background-color: black;
+    opacity: 0.8;
+    width: 97%;
+    height: 35rem;
+    /*overflow: auto;*/
+}
+
+.ku {
+    margin: 0 auto;
+    margin-top: 5px;
+    border-radius: 10px;
+    width: 95%;
+    height: 100px;
+    /*float: left;*/
+    /*border: 1px solid blue;*/
+    /*background: blue;*/
+}
+
+.ppp {
+    float: left;
+    margin: 0 auto;
+    margin-left: 0.3rem;
+    height: 80px;
+    width: 10px;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    background-color: #159aef;
+}
+
+.img {
+    width: 10px;
+}
+
+.pp {
+    float: left;
+    margin: 0;
+    margin-left: 5px;
+    margin-top: 7px;
+}
+
+[pp3] {
+    float: left;
+    color: #159aef;
+    font-size: 13px;
+    padding-left: 50px;
+    padding-top: 30px;
+    margin: 0 auto;
+}
+
+[pp4] {
+  width: 20px;
+  height: 20px;
+  /*border:1px solid red;*/
+    float: right;;
+    color: white;
+    font-size: 20px;
+    padding:1rem 1rem 1rem 1rem;
+    /*padding-left: 50px;
+    padding-top: 30px;*/
+    /*margin: 0 auto;*/
+}
+
+.spp {
+    margin: 0;
+    color: #159aef;
+}
+
+[p0] {
+    margin: 0;
+    color: white;
+    margin-left: 5px;
+    margin-top: 7px;
+    width: 10rem;
+    /*height: 1rem;*/
+    font-size: 15px;
+}
+
+.xz {
+    width: 92%;
+    margin: auto;
+    height: 30px;
+    color: gray;
+    padding-left: 20px;
+    display: none;
+}
+/*
+.aaa {
+    width: 95%;
+    height: 20px;
+    border: 1px solid red;
+    background-color: red;
+}*/
+
+
+/*.down{
+  text-align: center;
+  color:white;
+  font-size: 20px;
+  height: 50px;
+  width: 92%;
+  background-color:black;
+  position: fixed;
+  bottom: 0;
+  }*/

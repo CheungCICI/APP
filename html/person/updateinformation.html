@@ -1,0 +1,64 @@
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta http-equiv="pragma" content="private">
+    <link rel="stylesheet" type="text/css" href="../../css/public/ydui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/person/upinfo.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/foot.css"/>
+<head>
+<body>
+    <div class="wrap">
+      <input type="password" id="old" placeholder="原密码"><br>
+      <input type="password" id="password" placeholder="密码"><br>
+      <input type="password" id="comfirpassword"  placeholder="确认密码"><br>
+      <input type="button" value="重置密码" onclick="reup()"  class="up-re">
+      <div class="up-fh"><a href="javascript:;" onclick="api.closeFrame()">———— 返回 ————</a></div>
+    </div>
+  <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/public/jquery.min.js"></script>
+  <script type="text/javascript" src="../../script/public/public.js"></script>
+  <script type="text/javascript" >
+    apiready=function(){
+    };
+    function reup(){
+      var old=$('#old').val();
+      var password=$('#password').val();
+      var comfirpassword=$('#comfirpassword').val();
+      if(!old){
+        showMsg('fail', '原密码不能为空');
+        return ;
+      }
+      if(!password){
+        showMsg('fail','密码不能为空');
+       return ;
+      }
+      if(password!=comfirpassword){
+        showMsg('fail','两次密码不相同');
+        return ;
+      }
+      requestPost('Personal/UpdatePassword',{'old':old,'password':password,'comfirpassword':comfirpassword},function(result,data){
+        console.log(data);
+        if(result){
+            showMsg('success',data);
+            var winName = api.winName;
+            setTimeout(function(){
+              api.closeWin({
+                  name:winName
+              });
+            },500);
+            openWin('widget://html/login/login',{},true);
+
+        }else{
+             showMsg('fail',data);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>注册界面</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta http-equiv="pragma" content="private">
+    <link rel="stylesheet" type="text/css" href="../../css/public/ydui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/login/reg.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/foot.css" />
+</head>
+
+<body>
+    <div class="">
+        <div class="login-icon">
+            <img src="../../image/login.jpg">
+        </div>
+        <div class="login-form">
+            <div>
+                <input type="text" placeholder="输入手机号" class="img1" minlength="11" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')"><br>
+                <p p1>
+                  <input type="text" placeholder="验证码" class="img3">
+                  <button type="button" class="btn btn-warning" id="J_GetCode">获取短信验证码</button>
+                </p>
+                <br>
+                <input type="text" maxlength="6" placeholder="输入邀请码" class="img2">
+                <br>
+                <input type="password" placeholder="输入密码" class="img4">
+                <br>
+                <input type="submit" value="点击注册" class="reg-submit">
+            </div>
+            <div class="login-kh" onclick=" openfrm('../../html/login/login')"><a href="javascript:;">———— 已有账号 ————</a></div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../script/public/jquery.min.js"></script>
+<script type="text/javascript" src="../../script/public/ydui.js"></script>
+<script type="text/javascript" src="../../script/public/ydui.flexible.js"></script>
+<script type="text/javascript" src="../../script/public/public.js"></script>
+<script type="text/javascript" src="../../script/public/template.js">//模板文件</script>
+<script type="text/javascript">
+
+apiready=function(){
+  var $getCode = $('#J_GetCode');
+
+   /* 定义参数 */
+   $getCode.sendCode({
+       disClass: 'btn-disabled',
+       secs: 15,
+       run: false,
+       runStr: '{%s}秒后重新获取',
+       resetStr: '重新获取验证码'
+   });
+
+   $getCode.on('click', function () {
+       /* ajax 成功发送验证码后调用【start】 */
+       YDUI.dialog.loading.open('发送中');
+       console.log($(".img1").val());
+       requestPost('Index/GetMobileMsg', { //指向的验证码方法接口
+           'mobile': $(".img1").val(),
+           'codeType':'register'
+       }, function(result, data) {
+           if (result) {
+              //  console.log(data.mobile);
+              YDUI.dialog.loading.close();
+
+              $getCode.sendCode('start');
+              YDUI.dialog.toast('已发送', 'success', 1500);
+              //  showMsg("fail", "提现成功");
+           }else{
+             showMsg('fail',data);
+           }
+       });
+
+
+
+   });
+
+
+   $('.reg-submit').click(function() {
+         var user_phone = $('.img1').val();//手机号
+         var auth_code = $('.img3').val();//验证码
+         var invite_code = $('.img2').val();//邀请码
+         var password = $('.img4').val();//密码
+
+         if (!user_phone) {
+             showMsg('fail', '手机号不能为空');
+             $('.img1').focus();
+             return;
+         }
+         if (!auth_code) {
+             showMsg('fail', '注册码不能为空');
+             $('.img3').focus();
+             return;
+         }
+         if (!invite_code) {
+             showMsg('fail', '邀请码不能为空');
+             $('.img2').focus();
+             return;
+         }
+         if (!password) {
+             showMsg('fail', '密码不能为空');
+             $('.img4').focus();
+             return;
+         }
+         requestPost('Index/Register', { //指向的验证码方法接口
+             'phone': user_phone,
+             'phone_code':auth_code,
+             'invitecode':invite_code,
+             'pwd':password
+         }, function(result, data) {
+           if (result) {
+              //  console.log(data.mobile);
+                   showMsg('success',data);
+                   openfrm('../../html/login/login');
+              //  showMsg("fail", "提现成功");
+           }else{
+             console.log(data.mobile);
+             showMsg('fail',data);
+           }
+         });
+
+
+
+        //  authUser('Index/login', {
+        //      'uname': user_phone,
+        //      'pword': password
+        //  }, function(result, data) {
+        //      if (result) {
+        //          $api.setStorage('user_id', data.user_id);
+        //          $api.setStorage('user_session', data.session);
+        //          openWin('../../index');
+        //      } else {
+        //          showMsg('fail', data);
+        //      }
+        //  })
+
+
+
+     });
+
+
+
+
+
+}
+
+
+
+    // apiready = function() {
+    //     $('.reg-submit').click(function() {
+    //         var user_phone = $('.img1').val();
+    //         var password = $('.img2').val();
+    //         if (!user_phone) {
+    //             showMsg('fail', '用户名不能为空');
+    //             $('.img1').focus();
+    //             return;
+    //         }
+    //         if (!password) {
+    //             showMsg('fail', '密码不能为空');
+    //             $('.img2').focus();
+    //             return;
+    //         }
+    //         authUser('Index/login', {
+    //             'uname': user_phone,
+    //             'pword': password
+    //         }, function(result, data) {
+    //             if (result) {
+    //                 $api.setStorage('user_id', data.user_id);
+    //                 $api.setStorage('user_session', data.session);
+    //                 openWin('../../index');
+    //             } else {
+    //                 showMsg('fail', data);
+    //             }
+    //         })
+    //     });
+    // }
+</script>

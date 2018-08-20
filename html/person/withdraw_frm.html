@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta http-equiv="pragma" content="private">
+    <link rel="stylesheet" type="text/css" href="../../css/public/ydui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/person/tx.css" />
+
+</head>
+
+<body>
+
+    <div class="tx-nav">
+        <!-- <a href="#" onclick="api.closeFrame()">
+            <</a> -->
+    <p p2 onclick="api.closeFrame()"><img class="back_img" src="../../image/back.png"><span>用户出金</span></p>
+    </div>
+    <div class="container">
+
+        <div class="tx-item">
+            <div class="tx-item1">
+                <div class="tx-rad">
+                    <span class="zifu">中</span>
+                </div>
+                <P class="name">中国农业银行</P>
+                <a href="javascript:;">修改</a>
+            </div>
+
+            <div class="tx-item2">
+                <span class="num">**** **** **** 2587</span>
+            </div>
+        </div>
+
+        <div class="tx-tx">
+            <img src="../../image/tx.png"><span>提现金额:</span><input class="tx" maxlength="6" onkeyup="this.value=this.value.replace(/\D/g,'')" type="text" minlength="3" maxlength="5" pattern="[0-9]{3,5}" placeholder="请输入出金金额">
+        </div>
+
+        <div class="tx-ye">
+            <p>单次提现金额至少￥200</p>
+            <p><span class="yue">余额:0</span>&nbsp;&nbsp;手续费:<span class="sp"> 1%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dz">实际到账:</span></p>
+        </div>
+
+        <input type="button" value="确认出金" class="tx-sb">
+
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/person/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../script/public/public.js">//公共入口</script>
+    <script type="text/javascript" src="../../script/public/template.js">//模板文件</script>
+    <script type="text/javascript" type="text/javascript">
+        apiready = function() {
+
+            requestPost('Personal/MyBank', { //指向的方法接口
+            }, function(result, data) {
+                if (result) {
+                    if (!data.card_no) {
+                        openfrm('bank_frm');
+                        //  return   window.location.href='bank_frm.html';
+                    } else {
+                        //console.log(data.bank_name);
+                        $(".zifu").text(data.bank_name.substr(0, 1));
+                        $(".name").text(data.bank_name);
+                        $(".num").text(data.card_no);
+                    }
+                }
+            });
+            var money = "";
+            requestPost('Personal/MyMessage', { //指向的方法接口
+            }, function(result, data) {
+                if (result) {
+                    // console.log(data);
+                    money = data.money;
+                    $(".yue").text("余额:" + data.money);
+                }
+            });
+         //实时获取手续费变化
+            $(function(){
+                $(".tx").bind('input porpertychange',function(){
+                  var shouxufei=$(".tx").val()*0.01;
+                  var sj=$(".tx").val()-shouxufei;
+                  // console.log(sj);
+                  $(".dz").text("实际到账："+sj);
+                });
+            });
+        //值改变触发
+            // $(".tx").change(function() {
+            //   var shouxufei=$(".tx").val()*0.01;
+            //   var sj=$(".tx").val()-shouxufei;
+            // 	$(".dz").text("实际到账："+sj);
+            // });
+
+
+            $(".tx-sb").click(function() {
+                // var reg = /^\d{3,5}$/;
+                // console.log(reg.test($(".tx").val()));
+                // if (reg.test($(".tx").val()) == true) {
+                  //提交后展示手续费
+                    // var shiji=$(".tx").val()*0.01;
+                    // var sj=$(".tx").val()-shiji;
+                    // $(".dz").text("实际到账："+sj);
+
+                    if ($(".tx").val() < 200) {
+                        // alert("提现金额不能低于200元");
+                        showMsg("fail", "提现金额不能低于200元");
+                    } else if ($(".tx").val() > parseInt(money)) {
+                        // alert("金额不足"i+money);
+                        showMsg("fail", "金额不足");
+
+                    } else {
+                        // alert("提现金额：" + $(".tx").val());
+                        showMsg("fail", "提现金额：" + $(".tx").val())
+                            // openfrm('bank_frm');
+                            // Personal/AddWithdraw   amount
+
+                        requestPost('Personal/AddWithdraw', { //指向的方法接口
+                            'amount': $(".tx").val()
+                        }, function(result, data) {
+                            if (result) {
+                                // console.log(data.amount);
+                                showMsg("fail", "提现成功");
+                                setTimeout("openfrm('user_frm')", 1000);
+                            }
+                        });
+                    }
+                // }else{
+                //       showMsg("fail", "输入错误,请按要求输入");
+                // }
+
+            });
+
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>

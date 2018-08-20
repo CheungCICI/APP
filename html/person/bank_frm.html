@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta http-equiv="pragma" content="private">
+    <link rel="stylesheet" type="text/css" href="../../css/public/ydui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/person/bank_frm.css" />
+
+    <head>
+
+        <body>
+
+            <!-- <div class="bank-nav">
+   <a href="javacript:;">&lt;</a>
+   <span>开户信息</span>
+</div> -->
+
+            <div class="m-cell bank-item">
+                <div class="cell-item">
+                    <div class="cell-right"><span>*</span>开户人:</div>
+                    <div class="cell-right">
+                        <input type="text" class="cell-input  open_name">
+                    </div>
+                </div>
+                <div class="cell-item">
+                    <div class="cell-right"><span>*</span>银行名称:</div>
+                    <div class="cell-right">
+                          <select class="cell-input  bank_name">
+                            <option value="国家开发银行">国家开发银行</option>
+                       <option value="中国进出口银行">中国进出口银行</option>
+                       <option value="中国农业发展银行">中国农业发展银行</option>
+                       <option value="中国银行">中国银行</option>
+                       <option value="中国工商银行">中国工商银行</option>
+                       <option value="中国建设银行">中国建设银行</option>
+                       <option value="中国农业银行">中国农业银行</option>
+                       <option value="中国光大银行">中国光大银行</option>
+                       <option value="中国民生银行">中国民生银行</option>
+                       <option value="中信银行">中信银行</option>
+                       <option value="交通银行">交通银行</option>
+                       <option value="华夏银行">华夏银行</option>
+                       <option value="招商银行">招商银行</option>
+                       <option value="兴业银行">兴业银行</option>
+                       <option value="广发银行">广发银行</option>
+                       <option value="平安银行">平安银行</option>
+                       <option value="上海浦东发展银行">上海浦东发展银行</option>
+                       <option value="恒丰银行">恒丰银行</option>
+                       <option value="浙商银行">浙商银行</option>
+                       <option value="渤海银行">渤海银行</option>
+                       <option value="中国邮政储蓄银行">中国邮政储蓄银行</option>
+                       <option value="城市商业银行">城市商业银行</option>
+                       <option value="北京银行">北京银行</option>
+                       <option value="天津银行">天津银行</option>
+                       <option value="河北银行">河北银行</option>
+                       <option value="沧州银行">沧州银行</option>
+                       <option value="唐山市商业银行">唐山市商业银行</option>
+                       <option value="承德银行">承德银行</option>
+                       <option value="张家口市商业银行">张家口市商业银行</option>
+                       <option value="秦皇岛银行">秦皇岛银行</option>
+                       <option value="邢台银行">邢台银行</option>
+                       <option value="廊坊银行">廊坊银行</option>
+                       <option value="保定银行">保定银行</option>
+                       <option value="邯郸银行">邯郸银行</option>
+                       <option value="衡水银行">衡水银行</option>
+                       <option value="晋商银行">晋商银行</option>
+                       <option value="大同市商业银行">大同市商业银行</option>
+                       <option value="长治银行">长治银行</option>
+                       <option value="其他</">其他</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="cell-item">
+                    <div class="cell-right"><span>*</span>支行名称:</div>
+                    <div class="cell-right">
+                        <input type="text" class="cell-input sub_branch">
+                    </div>
+                </div>
+                <div class="cell-item">
+                    <div class="cell-right"><span>*</span>开户行行号:</div>
+                    <div class="cell-right">
+                        <input type="text" class="cell-input bank_number">
+                    </div>
+                </div>
+                <div class="cell-item">
+                    <div class="cell-right"><span>*</span>银行账号:</div>
+                    <div class="cell-right">
+                        <input type="text" class="cell-input card_no">
+                    </div>
+                </div>
+                <div class="cell-item">
+                    <div class="cell-right"><span>*</span>开户城市:</div>
+                    <div class="cell-right">
+                        <input type="hidden" value="" class="province">
+                        <input type="hidden" value="" class="city">
+                        <input type="hidden" value="" class="area">
+                        <input type="text" class="cell-select" readonly id="J_Address" placeholder="请选择" >
+                    </div>
+                </div>
+                <div class="cell-item">
+                    <div class="cell-right"><span>*</span>身份证号:</div>
+                    <div class="cell-right">
+                        <input type="text" class="cell-input id_card">
+                        <input type="hidden" class="bank_id">
+                    </div>
+                </div>
+            </div>
+
+            <!-- <input type="submit" value="确认"  class="bank-sb"> -->
+            <div class="bank-btn">
+                <input type="submit" value="确认" class="bank-sb">
+                <div class="bank-fh" onclick="api.closeFrame()"><a href="#">———— 返回 ————</a></div>
+            </div>
+
+
+        </body>
+        <script type="text/javascript" src="../../script/api.js"></script>
+        <script type="text/javascript" src="../../script/person/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../../script/public/ydui.js"></script>
+        <script type="text/javascript" src="../../script/public/ydui.flexible.js"></script>
+        <script type="text/javascript" src="../../script/public/public.js"></script>
+        <script type="text/javascript" src="../../script/index/index.js"></script>
+        <script type="text/javascript" src="../../script/person/ydui.citys.js"></script>
+        <script>
+            apiready = function() {
+
+                requestPost('Personal/MyBank', {}, function(result, data) {
+                    if (result) {
+                        $('.bank_name').val(data.bank_name);
+                        $('.sub_branch').val(data.sub_branch);
+                        $('.bank_number').val(data.bank_number);
+                        $('.open_name').val(data.open_name);
+                        $('.card_no').val(data.card_no);
+                        $('.id_card').val(data.id_card);
+                        $('.bank_id').val(data.id);
+                        $('#J_Address').val(data.province+ ' ' + data.city + ' ' + data.area);
+                        $('.province').val(data.province);
+                        $('.city').val(data.city);
+                        $('.area').val(data.area);
+                        var $address = $('#J_Address');
+                        $address.citySelect({
+                            provance: data.province,
+                            city: data.city,
+                            area:data.area
+                        });
+
+                        $address.on('click', function() {
+                            $address.citySelect('open');
+                        });
+
+                        $address.on('done.ydui.cityselect', function(ret) {
+                            /* 省：ret.provance */
+                            /* 市：ret.city */
+                            /* 县：ret.area */
+                            $('.province').val(ret.provance);
+                            $('.city').val(ret.city);
+                            $('.area').val(ret.area);
+                            $(this).val(ret.provance + ' ' + ret.city + ' ' + ret.area);
+                        });
+
+
+
+
+                    } else {
+                        showMsg('fail', data);
+                    }
+                });
+                $('.bank-sb').click(function() {
+                    $(this).attr("disabled", "disabled");
+                    var bank_name = $('.bank_name').val();
+                    if (!bank_name) {
+                        showMsg('fail', '银行名不能为空');
+                    }
+                    var sub_branch = $('.sub_branch').val();
+                    if (!sub_branch) {
+                        showMsg('fail', '开户支行不能为空');
+                    }
+                    var bank_number = $('.bank_number').val();
+                    if (!bank_number) {
+                        showMsg('fail', '开户行号不能为空');
+                    }
+                    var open_name = $('.open_name').val();
+                    if (!open_name) {
+                        showMsg('fail', '开户人不能为空');
+                        return;
+                    }
+                    var card_no = $('.card_no').val();
+                    if (!card_no) {
+                        showMsg('fail', '银行卡号不能为空');
+                        return;
+                    }
+                    var id_card = $('.id_card').val();
+                    if (!id_card) {
+                        showMsg('fail', '身份证号不能为空');
+                        return;
+                    }
+                    var province = $('.province').val();
+                    var city = $('.city').val();
+                    var bank_id = $('.bank_id').val();
+                    var area = $('.area').val()
+                    requestPost('Personal/EditBank', {
+                        'bank_name': bank_name,
+                        'sub_branch': sub_branch,
+                        'bank_number': bank_number,
+                        'open_name': open_name,
+                        'card_no': card_no,
+                        'id_card': id_card,
+                        'province': province,
+                        'city': city,
+                        'area': area,
+                        'bank_id': bank_id
+                    }, function(result, data) {
+                        if (result) {
+                            showMsg('success', '修改成功');
+                            api.closeFrame();
+
+                        } else {
+                            // console.log(data);
+                            showMsg('fail', data);
+                        }
+                    });
+                });
+            }
+        </script>
+
+</html>

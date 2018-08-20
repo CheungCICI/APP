@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" contect="no-cache">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+    />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta http-equiv="pragma" content="private">
+    <link rel="stylesheet" type="text/css" href="../../css/public/ydui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index/show.css" />
+</head>
+
+<body id='body'>
+    <header id="header" class="m-navbar" id="header">
+        <a href="#"  class="navbar-item">
+            <img src="../../image/back.png">
+        </a>
+        <div class="navbar-center">
+            <span class="navbar-title"></span>
+        </div>
+    </header>
+    <div class="tab-panel">
+        <ul class="message">
+            <li id="price" class="ng-binding">
+            </li>
+            <li>
+                <p class="tit">开盘</p>
+                <span id="open" class="open ng-binding"></span>
+            </li>
+            <li>
+                <p class="tit">最低</p>
+                <span id="floor" class="lowest ng-binding"></span>
+            </li>
+            <li>
+                <p class="tit">最高</p>
+                <span id="top" class="highest ng-binding"></span>
+            </li>
+        </ul>
+    </div>
+    <nav class="nav">
+        <article>
+            <span class="trade-chart-type stock active Kxian" onclick="change_chart_type('stock')">K线</span>
+            <span class="trade-chart-type line zoushi" onclick="change_chart_type('line')">走势</span>
+        </article>
+        <section class="trade-chart-period 1M active" onclick="change_chart_period('1M')">1M</section>
+        <section class="trade-chart-period 5M" onclick="change_chart_period('5M')">5M</section>
+        <section class="trade-chart-period 15M" onclick="change_chart_period('15M')">15M</section>
+        <section class="trade-chart-period 30M" onclick="change_chart_period('30M')">30M</section>
+        <section class="trade-chart-period 1H" onclick="change_chart_period('1H')">1H</section>
+        <section class="trade-chart-period 1D" onclick="change_chart_period('1D')">1D</section>
+    </nav>
+    <footer class="foot">
+        <div id="container">
+            <div id="ecKx">
+                <div></div>
+            </div>
+            <div class="txt1">
+                <span class="a"></span>
+                <span class="b"></span>
+                <span class="c"></span>
+                <span class="d"></span>
+                <span class="e"></span>
+            </div>
+            <div class="txt2">
+                <span class="a DIFF">
+                    <i></i>
+                </span>
+                <span class="b DEA">
+                    <i></i>
+                </span>
+                <span class="c MACD">
+                    <i></i>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <div class="strum">
+        <div class="head">
+            <span>订单确认</span>
+            <span id="die">X</span>
+        </div>
+        <hr>
+        <p id="time">到期时间</p>
+        <ion-scroll direction="x" class="scroll-view ionic-scroll scroll-x">
+            <div id="oddslist"></div>
+        </ion-scroll>
+        <script id="mes" type="text/html">
+                {{each list as mes}}
+                <ul class="odd">
+                    <li>
+                        <span id="{{mes.id}}">结算时间</span>
+                    </li>
+                    <li>
+                        <span>{{mes.stockdater}}秒</span>
+                    </li>
+                    <li>
+                        <span id="odds">{{mes.odds*100}}%</span>
+                    </li>
+                </ul>
+                {{/each}}
+            </script>
+        <div class="mid">
+            <p>投资金额</p>
+            <div class="m-tab" data-ydui-tab>
+                <ul class="tab-nav">
+                    <li class="tab-nav-item tab-active">100</li>
+                    <li class="tab-nav-item">200</li>
+                    <li class="tab-nav-item">300</li>
+                    <li class="tab-nav-item">400</li>
+                    <li class="tab-nav-item">
+                        <input type="number" class="num" placeholder="其他金额">
+                    </li>
+                </ul>
+                <div class="tab-panel" style="display: none">
+                    <div class="tab-panel-item tab-active"></div>
+                    <div class="tab-panel-item"></div>
+                    <div class="tab-panel-item"></div>
+                    <div class="tab-panel-item"></div>
+                    <div class="tab-panel-item"></div>
+                </div>
+            </div>
+            <div class="mez">
+                <p class="yue">余额:￥
+                    <span></span>
+                </p>
+                <p>手续费:2%</p>
+            </div>
+        </div>
+        <hr>
+        <div class="bot">
+            <div>
+                <div>
+                    <p>名称</p>
+                    <p id="goods"></p>
+                </div>
+                <div>
+                    <p>方向</p>
+                    <span id="side"></span>
+                </div>
+                <div>
+                    <p>现价</p>
+                    <span class="now"></span>
+                </div>
+                <div>
+                    <p>金额</p>
+                    <span id="moeny">100</span>
+                </div>
+            </div>
+            <button id="goto">确认下注</button>
+            <div class="shou">
+                <p id="get"></p>
+                <p>保底金额:￥0.00</p>
+            </div>
+        </div>
+    </div>
+    <div class="history-panel">
+        <div class="panel-header chicangmingxi">持仓明细</div>
+        <div class="trade_history_list">
+                <div class="scroll" id="hello"></div>
+                <script id="mingxi" type="text/html">
+                    {{each list as mingxi}}
+                    <ul class="deatil downtime">
+                       <li class="{{mingxi.order_id}}">
+                           <section>
+                                <p>{{mingxi.goods_name}}</p>
+                                <p class="present_price">{{mingxi.present_price}}</p>
+                                <p>{{mingxi.create_time}}</p>
+                            </section>
+                            <section>
+                                {{if mingxi.highs_lows==1}}<p class="ccc" style="color:red;"><img src='../../image/up.png'>买涨(￥{{mingxi.amount}})</p>{{/if}}
+                                {{if mingxi.highs_lows==0}}<p class="ccc" style="color:green;"><img src='../../image/down.png'>买跌(￥{{mingxi.amount}})</p>{{/if}}
+                                <p class="timemoney"></p>
+                           </section>
+                           <section >
+                                <input class="timedown" type="hidden" value="{{mingxi.countdown}}">
+                                <input class="pase_price" type="hidden" value="{{mingxi.amount}}">
+                                <input class="highs_lows" type="hidden" value="{{mingxi.highs_lows}}">
+                                <input class="odds" type="hidden" value="{{mingxi.odds}}">
+                                <p class="amount">{{mingxi.amount}}</p>
+                                <p class="time">{{mingxi.pattern}}</p>
+                           </section>
+
+                       </li>
+                    </ul>
+                    {{/each}}
+                </script>
+        </div>
+    </div>
+    <div id='fot' class="m-tabbar tabbar-fixed">
+        <div class="tabbar-item tabbar-keep">
+            <button type="button" class="btn-block btn-warning">
+                持仓
+            </button>
+        </div>
+        <div class="tabbar-item tabbar-up">
+            <button type="button" class="btn-block btn-danger">
+                买涨
+            </button>
+        </div>
+        <div class="tabbar-item tabbar-down">
+            <button type="button" class="btn-block btn-primary">
+                买跌
+            </button>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/public/jquery.min.js"></script>
+<script type="text/javascript" src="../../script/public/ydui.js"></script>
+<script type="text/javascript" src="../../script/public/ydui.flexible.js"></script>
+<script type="text/javascript" src="../../script/public/public.js"></script>
+<script type="text/javascript" src="../../script/public/echarts.min.js"></script>
+<script type="text/javascript" src="../../script/index/m.js"></script>
+<script type="text/javascript" src="../../script/public/template.js"></script>
+
+</html>

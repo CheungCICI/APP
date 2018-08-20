@@ -1,0 +1,86 @@
+*{
+  margin:0;
+  padding:0;
+}
+body{
+  background-color: white;
+}
+.login-icon{
+  border:none;
+}
+.login-icon>img{
+  width:6.5rem;
+  height: 6.5rem;
+  margin: 0 auto;
+}
+.login-form{
+  margin: 0 auto;
+  height: 4rem;
+  width: 8rem;
+}
+input{
+  width:70%;
+  height: 0.8rem;
+  border-radius: 0.2rem;
+  border: none;
+  margin-top:  0.2rem;
+  font-size:0.3rem;
+  display:block;
+  margin:0 auto;
+  padding-left:0.5rem;
+}
+.img1{
+  background: url("../../image/user.png") no-repeat  0.15rem;
+  background-color:  #CCCCCC;
+}
+.img2{
+  background: url("../../image/yaoqing.png") no-repeat  0.15rem;
+  background-position: left;
+  background-size: 10%;
+  /*background-size: auto;*/
+  background-color:  #CCCCCC;
+}
+.img3{
+  background: url("../../image/yanzheng.png") no-repeat;
+  width: 50%;
+  /*margin-left: 0;*/
+  float: left;
+  background-position: left;
+  background-size: 20%;
+  /*background-size: auto;*/
+  background-color:  #CCCCCC;
+  /*border: 1px solid blue;*/
+}
+.img4{
+  background: url("../../image/password.png") no-repeat  0.15rem;
+  background-color:  #CCCCCC;
+}
+[p1]{
+  margin-left: 1.2rem;
+  width: 70%;
+  height: 0.8rem;
+  /*border: 1px solid red;*/
+}
+.btn{
+  margin-left: 0.2rem;
+  margin-top: 0.06rem;
+
+  /*border: 1px solid red;*/
+}
+.reg-submit{
+  padding-left: 0;
+   width:60%;
+   height: 0.7rem;
+   background-color:#FDBE19;
+  display: block;
+  margin:0 auto;
+  text-align: center;
+}
+.login-kh{
+  margin-top: 0.5rem;
+  text-align: center;
+}
+.login-kh>a{
+  color:#E8AF2E;
+  font-size: 0.3rem;
+}

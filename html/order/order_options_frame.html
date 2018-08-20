@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>交易历史</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta http-equiv="pragma" content="private">
+    <link rel="stylesheet" type="text/css" href="../../css/public/ydui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/foot.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/order/style.css" />
+   </head>
+
+    <body>
+<div class="content">
+
+  <header class="m-navbar navbar-fixed">
+      <div class="navbar-center">
+          <span class="navbar-title" id="nav">交易历史</span>
+      </div>
+  </header>
+
+  <section>
+      <div class="m-tab" data-ydui-tab >
+
+        <div class="container">
+          <ul class="tab-nav" id="tab-nav1">
+              <li class="tab-nav-item tab-active tab-fix"><a href="javascript:;">持仓明细</a></li>
+              <li class="tab-nav-item "><a href="javascript:;">历史明细</a></li>
+          </ul>
+        </div>
+
+          <div class="tab-panel">
+              <div class="tab-panel-item" id="options">
+
+              </div>
+              <script type="text/html" id="optionshtml">
+                  {{each list as v}}
+                  <div class="order-item order-item1 options">
+                      {{if v.highs_lows==1}}
+                      <div class="item">
+
+                          <ul>
+                              <li><span class="item-sp">{{v.goods_name}}</span></li>
+                              <li class="item-img"><img src="../../image/up.png"><span class="item-list optionsitem-list">买涨（￥{{v.amount}}）</span></li>
+                              <li class="fr"><span class="item-list item-list1 newprice  optionsitem-list ">{{v.newprice}}</span></li>
+                          </ul>
+                      </div>
+                      <div div class="item">
+                          <ul>
+                              <li><span class="order_id" hidden="hidden">{{v.order_id}}</span><span class="present_price">{{v.present_price}}</span>-<span class="item-list optionsitem-list countdown">588.615</span>
+                                  </li>
+                          </ul>
+                      </div>
+                      {{/if}}
+                       {{if v.highs_lows==0}}
+                      <div class="item">
+
+                          <ul>
+                              <li><span class="item-sp">{{v.goods_name}}</span></li>
+                              <li class="item-img"><img src="../../image/down.png"><span class="item-list optionsitem-list item-list-gr ">买跌（￥{{v.amount}}）</span></li>
+                              <li class="fr"><span class="item-list item-list1 newprice optionsitem-list  item-list-gr">{{v.newprice}}</span></li>
+                          </ul>
+                      </div>
+                      <div div class="item">
+                          <ul>
+                              <li><span class="order_id" hidden="hidden">{{v.order_id}}</span><span class="present_price">{{v.present_price}}</span>-<span class="item-list optionsitem-list countdown ">588.615</span>
+                                  </li>
+                          </ul>
+                      </div>
+                      {{/if}}
+                      <div div class="item">
+                          <ul>
+                              <li><span class="sq">{{v.create_time}}</span></li>
+                              <li class="fr  downtime">{{v.countdown}}</li>
+                          </ul>
+                      </div>
+                  </div>
+                  {{/each}}
+              </script>
+
+              <div class="tab-panel-item tab-active" id="history">
+              </div>
+              <script type="text/html" id="historyhtml">
+                {{each list as v}}
+                <div class="order-item" id="item-first">
+                  {{if v.profit_loss>0}}
+                  <div class="item">
+
+                      <ul>
+                          <li><span class="item-sp">{{v.goods_name}}</span></li>
+                          <li class="item-img">{{if v.highs_lows==0}}<img src="../../image/down.png"><span class="item-list  ">买跌（￥{{v.amount}}）</span>{{/if}}
+                            {{if v.highs_lows==1}}<img src="../../image/up.png"><span class="item-list">买涨（￥{{v.amount}}）</span>{{/if}}</li></li>
+                          <li class="fr"><span class="item-list item-list1 ">{{v.newprice}}</span></li>
+                      </ul>
+                  </div>
+                  <div div class="item">
+                      <ul>
+                          <li>{{v.present_price}}-<span class="item-list ">{{v.out_price}}</span>
+                              </li>
+                      </ul>
+                  </div>
+                  {{/if}}
+                   {{if v.profit_loss<=0}}
+                  <div class="item">
+
+                      <ul>
+                          <li><span class="item-sp">{{v.goods_name}}</span></li>
+                          <li class="item-img">
+                            {{if v.highs_lows==0}}<img src="../../image/down.png"><span class="item-list item-list-gr ">买跌（￥{{v.amount}}）</span>{{/if}}
+                              {{if v.highs_lows==1}}<img src="../../image/up.png"><span class="item-list item-list-gr ">买涨（￥{{v.amount}}）</span>{{/if}}</li>
+                          <li class="fr"><span class="item-list item-list1 item-list-gr">{{v.profit_loss}}</span></li>
+                      </ul>
+                  </div>
+                  <div div class="item">
+                      <ul>
+                          <li >{{v.present_price}}-<span class="item-list ">{{v.out_price}}</span>
+                              </li>
+                      </ul>
+                  </div>
+                  {{/if}}
+                  <div div class="item">
+                      <ul>
+                          <li><span class="sq">{{v.create_time}}</span></li>
+                          <li class="fr"> {{v.outime}}</li>
+                      </ul>
+                  </div>
+              </div>
+              {{/each}}
+              </script>
+
+
+
+
+
+          </div>
+      </div>
+  </section>
+
+</div>
+
+
+
+
+    </body>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script src="../../script/public/jquery.min.js"></script>
+    <script type="text/javascript" src="../../script/public/ydui.js"></script>
+    <script type="text/javascript" src="../../script/public/ydui.flexible.js"></script>
+    <script type="text/javascript" src="../../script/public/public.js"></script>
+    <script type="text/javascript" src="../../script/public/template.js"></script>
+    <script type="text/javascript" src="../../script/layui/layui.js"></script>
+    <script type="text/javascript" src="../../script/order/order.js"></script>
+
+</html>

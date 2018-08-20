@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta http-equiv="pragma" content="private">
+    <link rel="stylesheet" type="text/css" href="../../css/public/ydui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/person/txlist.css"/>
+<head>
+<body>
+
+   <div class="content">
+
+     <div class="txlist-nav">
+       <!-- <a href="#"  onclick="api.closeFrame()"><</a> -->
+       <p p2 onclick="api.closeFrame()"><img class="back_img" src="../../image/back.png"><span>提现列表</span></p>
+
+     </div>
+
+     <div class="container" id="container">
+
+     <script type="text/html" id="txhtml">
+     {{each list as v}}
+       <div class="txlist-item">
+          <p>提现金额: <span>{{v.amount}}</span></p>
+          <p>状态: <span>{{if v.nowstate==0}}未审核{{/if}}  {{if v.nowstate==1}}已通过{{/if}}  {{if v.nowstate==2}}未通过{{/if}}</span></p>
+          <p>时间: <span>{{v.intime}}</span></p>
+       </div>
+       {{/each}}
+     </script>
+
+     </div>
+
+   </div>
+
+
+
+
+
+  <script src="../../script/api.js"></script>
+  <script src="../../script/public/jquery.min.js"></script>
+  <script src="../../script/public/public.js"></script>
+  <script src="../../script/public/template.js"></script>
+  <script src="../../script/layui/layui.js"></script>
+  <script src="../../script/person/txlist.js"></script>
+</body>
+</html>
